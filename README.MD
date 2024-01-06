@@ -31,9 +31,9 @@
 
 #### User Model
 
-- [] create models folder and User.js file
-- [] create schema with name,email, password (all type:String)
-- [] export mongoose model
+- [x] create models folder and User.js file
+- [x] create schema with name,email, password (all type:String)
+- [x] export mongoose model
 
 #### Validator Package
 
@@ -41,27 +41,27 @@
 
 #### Auth Routes Structure
 
-- [] create controllers folder
-- [] add authController file
-- [] export (register,login,logout) functions
-- [] res.send('some string value')
-- [] create routes folder
-- [] setup authRoutes file
-- [] import all controllers
-- [] setup three routes
-- [] post('/register') post('/login') get('/logout')
-- [] import authRoutes as authRouter in the app.js
-- [] setup app.use('/api/v1/auth', authRouter)
+- [x] create controllers folder
+- [x] add authController file
+- [x] export (register,login,logout) functions
+- [x] res.send('some string value')
+- [x] create routes folder
+- [x] setup authRoutes file
+- [x] import all controllers
+- [x] setup three routes
+- [x] post('/register') post('/login') get('/logout')
+- [x] import authRoutes as authRouter in the app.js
+- [x] setup app.use('/api/v1/auth', authRouter)
 
 #### Test Routes in Postman
 
 #### Register Controller
 
-- [] create user
-- [] send response with entire user (only while testing)
-- [] check if email already in use (schema and controller)
-- [] ignore 'role'
-- [] alternative 'admin' setup
+- [x] create user
+- [x] send response with entire user (only while testing)
+- [x] check if email already in use (schema and controller)
+- [x] ignore 'role'
+- [x] alternative 'admin' setup
 
 #### Handle Password
 
