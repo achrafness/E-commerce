@@ -6,12 +6,14 @@ const {
   login,
   logout,
   deleteAll,
+  getAll,
 } = require("../controllers/authController");
 
 router
   .post("/register", register)
   .post("/login", login)
   .get("/logout", logout)
-  .delete("/", deleteAll);
+  .delete("/", deleteAll)
+  .get("/", getAll);
 
 module.exports = router;

@@ -4,6 +4,7 @@ require("express-async-errors");
 const express = require("express");
 const app = express();
 // rest of packeges
+const cookieParser = require("cookie-parser") // acces to cookies 
 const morgan = require("morgan");
 // DB
 const connectDB = require("./db/connect");
@@ -15,8 +16,13 @@ const authRouter = require("./routes/authRoutes")
 
 app.use(morgan("tiny"));
 app.use(express.json()); // have acces to json data in req.body
+app.use(cookieParser(process.env.JWT_SECRET))
 
 app.get("/", (req, res) => {
+  res.send("the e-commerce api");
+});
+app.get("/api/v1", (req, res) => {
+  console.log(req.signedCookies)
   res.send("the e-commerce api");
 });
 app.use("/api/v1/auth",authRouter)
