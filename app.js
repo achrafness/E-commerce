@@ -13,19 +13,18 @@ const notFoundMiddleware = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
 // routers 
 const authRouter = require("./routes/authRoutes")
+const userRouter = require("./routes/userRoutes")
 
 app.use(morgan("tiny"));
 app.use(express.json()); // have acces to json data in req.body
 app.use(cookieParser(process.env.JWT_SECRET))
+app.use(express.static("./public")) 
 
-app.get("/", (req, res) => {
-  res.send("the e-commerce api");
-});
 app.get("/api/v1", (req, res) => {
-  console.log(req.signedCookies)
   res.send("the e-commerce api");
 });
 app.use("/api/v1/auth",authRouter)
+app.use("/api/v1/user",userRouter)
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);

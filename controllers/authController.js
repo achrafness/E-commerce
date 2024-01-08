@@ -2,9 +2,10 @@ const User = require("../models/User");
 const { StatusCodes } = require("http-status-codes");
 const CustomError = require("../errors");
 const { attachCookiesToResponse  } = require("../utils");
+
 const register = async (req, res) => {
   const { name, email, password } = req.body;
-  const emailAlreadyExists = await User.findOne({ email });
+  const emailAlreadyExists = await User.findOne({ email:email });
   if (emailAlreadyExists) {
     throw new CustomError.BadRequestError("Email already exists");
   }
@@ -12,7 +13,7 @@ const register = async (req, res) => {
   const role = isFirst ? "admin" : "user";
   const user = await User.create({ name, email, password, role });
   const tokenUser = { name: user.name, userId: user._id, role: user.role };
-  attachCookiesToResponse({res,tokenUser});
+  attachCookiesToResponse({res,user:tokenUser});
   res.status(StatusCodes.CREATED).json({ user: tokenUser });
 };
 const login = async (req, res) => {
@@ -21,12 +22,15 @@ const login = async (req, res) => {
     throw new CustomError.BadRequestError("please provide email and password");
   }
   const user = await User.findOne({email:email})
+  if(!user){
+    throw new CustomError.UnauthenticatedError("Invalid information");
+  }
   const isMatch = await user.comparePassword(password)
-  if(!user || !isMatch){
+  if(!isMatch){
     throw new CustomError.UnauthenticatedError("Invalid information");
   }
   const tokenUser = { name: user.name, userId: user._id, role: user.role };
-  attachCookiesToResponse({res,tokenUser});
+  attachCookiesToResponse({res,user:tokenUser});
   res.status(StatusCodes.CREATED).json({user:tokenUser})
 };
 const logout = async (req, res) => {
@@ -36,18 +40,10 @@ const logout = async (req, res) => {
   })
   res.status(StatusCodes.OK).json({msg:"user logout"})
 };
-const deleteAll = async (req, res) => {
-  const user = await User.deleteMany({});
-  res.status(StatusCodes.OK).json({ user });
-};
-const getAll = async (req, res) => {
-  const user = await User.find({});
-  res.status(StatusCodes.OK).json({ user });
-};
+
+
 module.exports = {
   login,
   register,
   logout,
-  deleteAll,
-  getAll,
 };
