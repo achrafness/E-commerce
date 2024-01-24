@@ -1,7 +1,11 @@
 const User = require("../models/User");
 const { StatusCodes } = require("http-status-codes");
 const CustomError = require("../errors");
-const { attachCookiesToResponse, createTokenUser,checkPermission } = require("../utils");
+const {
+  attachCookiesToResponse,
+  createTokenUser,
+  checkPermission,
+} = require("../utils");
 const getAllUsers = async (req, res) => {
   const users = await User.find({ role: "user" }).select("email name _id");
   res.status(StatusCodes.OK).json({ count: users.length, users });
@@ -12,7 +16,7 @@ const getSingleUser = async (req, res) => {
   if (!user) {
     throw new CustomError.NotFoundError(`No user with id ${id}`);
   }
-  checkPermission(req.user,user._id)
+  checkPermission(req.user, user._id);
   res.status(StatusCodes.OK).json({ user });
 };
 const showCurrentUser = async (req, res) => {
@@ -24,9 +28,9 @@ const updateUser = async (req, res) => {
     throw new CustomError.BadRequestError("please provide name or email");
   }
   const user = await User.findOneAndUpdate(
-    {_id: req.user.userId,},
-    {email: email,name: name,},
-    {new: true,runValidators: true,}
+    { _id: req.user.userId },
+    { email: email, name: name },
+    { new: true, runValidators: true }
   );
   const tokenUser = createTokenUser(user);
   attachCookiesToResponse({ res, user: tokenUser });
