@@ -245,34 +245,34 @@
 
 #### Create Review
 
-- [] check for product in the req.body
-- [] attach user property (set it equal to req.user.userId) on to req.body
-- [] create review
-- [] don't test yet
+- [X] check for product in the req.body
+- [X] attach user property (set it equal to req.user.userId) on to req.body
+- [X] create review
+- [X] don't test yet
 
 #### Get All Reviews and Get Single Review
 
-- [] both public routes, typical setup
+- [X] both public routes, typical setup
 
 #### Delete Review
 
-- [] get id from req.params
-- [] check if review exists
-- [] if no review, 404
-- [] check permissions (req.user, review.user)
-- [] use await review.remove()
-- [] send back 200
+- [X] get id from req.params
+- [X] check if review exists
+- [X] if no review, 404
+- [X] check permissions (req.user, review.user)
+- [X] use await review.remove()
+- [X] send back 200
 
 #### Update Review
 
-- [] get id from req.params
-- [] get {rating, title comment} from req.body
-- [] check if review exists
-- [] if no review, 404
-- [] check permissions
-- [] set review properties equal to rating, title, comment
-- [] use await review.save()
-- [] send back 200
+- [X] get id from req.params
+- [X] get {rating, title comment} from req.body
+- [X] check if review exists
+- [X] if no review, 404
+- [X] check permissions
+- [X] set review properties equal to rating, title, comment
+- [X] use await review.save()
+- [X] send back 200
 
 #### Populate
 
@@ -286,19 +286,19 @@
 
 #### Order Schema
 
-- [] create Order.js in models folder
-- [] create Schema
-- [] tax : {type:Number}
-- [] shippingFee: {type:Number}
-- [] subtotal: {type:Number}
-- [] total: {type:Number}
-- [] orderItems:[]
-- [] status:{type:String}
-- [] user
-- [] clientSecret:{type:String}
-- [] paymentId:{type:String}
-- [] set timestamps
-- [] export Order model
+- [x] create Order.js in models folder
+- [x] create Schema
+- [x] tax : {type:Number}
+- [x] shippingFee: {type:Number}
+- [x] subtotal: {type:Number}
+- [x] total: {type:Number}
+- [x] orderItems:[]
+- [x] status:{type:String}
+- [x] user
+- [x] clientSecret:{type:String}
+- [x] paymentId:{type:String}
+- [x] set timestamps
+- [x] export Order model
 
 #### Order Structure
 
