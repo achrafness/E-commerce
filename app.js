@@ -7,6 +7,11 @@ const app = express();
 const cookieParser = require("cookie-parser") // acces to cookies 
 const morgan = require("morgan");
 const fileUpload = require("express-fileupload")
+const rateLimiter = require('express-rate-limit');
+const helmet = require('helmet');
+const xss = require('xss-clean');
+const cors = require('cors');
+const mongoSanitize = require('express-mongo-sanitize');
 // DB
 const connectDB = require("./db/connect");
 // middleware
@@ -17,12 +22,23 @@ const authRouter = require("./routes/authRoutes")
 const userRouter = require("./routes/userRoutes")
 const productRouter = require("./routes/productRoutes")
 const reviewsRouter = require("./routes/reviewRoutes")
+const orderRouter = require("./routes/orderRoutes")
 
 app.use(morgan("tiny"));
 app.use(express.json()); // have acces to json data in req.body
 app.use(cookieParser(process.env.JWT_SECRET))
 app.use(express.static("./public")) 
 app.use(fileUpload())
+app.use(
+  rateLimiter({
+    windowMs: 15 * 60 * 1000,
+    max: 60,
+  })
+);
+app.use(helmet());
+app.use(cors());
+app.use(xss());
+app.use(mongoSanitize());
 
 app.get("/api/v1", (req, res) => {
   res.send("the e-commerce api");
@@ -31,6 +47,8 @@ app.use("/api/v1/auth",authRouter)
 app.use("/api/v1/user",userRouter)
 app.use("/api/v1/product",productRouter)
 app.use("/api/v1/reviews",reviewsRouter)
+app.use("/api/v1/orders",orderRouter)
+
 
 
 
