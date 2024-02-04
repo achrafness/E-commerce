@@ -5,7 +5,8 @@ const express = require("express");
 const app = express();
 // rest of packeges
 const cookieParser = require("cookie-parser") // acces to cookies 
-const morgan = require("morgan");
+// dev 
+// const morgan = require("morgan");
 const fileUpload = require("express-fileupload")
 const rateLimiter = require('express-rate-limit');
 const helmet = require('helmet');
@@ -24,7 +25,8 @@ const productRouter = require("./routes/productRoutes")
 const reviewsRouter = require("./routes/reviewRoutes")
 const orderRouter = require("./routes/orderRoutes")
 
-app.use(morgan("tiny"));
+// dev 
+// app.use(morgan("tiny"));
 app.use(express.json()); // have acces to json data in req.body
 app.use(cookieParser(process.env.JWT_SECRET))
 app.use(express.static("./public")) 
