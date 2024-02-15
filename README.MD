@@ -1,6 +1,6 @@
 # E-commerce
 
-This project is 
+project with a focus on setting up, running, and understanding its structure. It includes instructions for environment setup, project organization, security measures, API endpoints for authentication, user management, product handling, reviews, and orders. The project is implemented using Node.js and MongoDB, with various security measures such as helmet, xss-clean, and rate limiting
 
 ## Getting Started
 
@@ -86,7 +86,7 @@ The project is organized into the following directories:
 
 ## Link
 
-You can see this project [here](https://jobs-api-vw4r.onrender.com/).
+You can see this project [here](https://e-commerce-tgbc.onrender.com).
 
 ## Contributing
 
