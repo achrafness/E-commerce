@@ -79,12 +79,15 @@ const getCurrentUserOrders = async (req, res) => {
 };
 const updateOrder = async (req, res) => {
   const orderID = req.params.id;
-  
+  const paymentIntentId = req.body 
   const order = await Order.findOne({ _id:orderID});
   if(!order){
     throw new CustomError.NotFoundError(`No order with id :${orderID }`)
   }
   checkPermissions(req.user,order.user)
+  order.paymentIntentId = paymentIntentId ;
+  order.status = "paid"
+  await order.save()
   res.status(StatusCodes.OK).json({ order });
 };
 

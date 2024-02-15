@@ -6,7 +6,7 @@ const app = express();
 // rest of packeges
 const cookieParser = require("cookie-parser") // acces to cookies 
 // dev 
-// const morgan = require("morgan");
+const morgan = require("morgan");
 const fileUpload = require("express-fileupload")
 const rateLimiter = require('express-rate-limit');
 const helmet = require('helmet');
@@ -26,11 +26,12 @@ const reviewsRouter = require("./routes/reviewRoutes")
 const orderRouter = require("./routes/orderRoutes")
 
 // dev 
-// app.use(morgan("tiny"));
+app.use(morgan("tiny"));
 app.use(express.json()); // have acces to json data in req.body
 app.use(cookieParser(process.env.JWT_SECRET))
 app.use(express.static("./public")) 
 app.use(fileUpload())
+app.set('trust proxy', 1);
 app.use(
   rateLimiter({
     windowMs: 15 * 60 * 1000,
@@ -50,7 +51,6 @@ app.use("/api/v1/user",userRouter)
 app.use("/api/v1/product",productRouter)
 app.use("/api/v1/reviews",reviewsRouter)
 app.use("/api/v1/orders",orderRouter)
-
 
 
 

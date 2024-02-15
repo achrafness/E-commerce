@@ -337,8 +337,8 @@
 - [x] get order
 - [x] if does not exist - 404
 - [x] check permissions
-- [] set paymentIntentId and status as 'paid'
-- [] order.save()
+- [x] set paymentIntentId and status as 'paid'
+- [x] order.save()
 
 #### Create Docs
 
@@ -349,11 +349,11 @@
 
 #### Security Packages
 
-- [] express-rate-limiter
-- [] helmet
-- [] xss-clean
-- [] express-mongo-sanitize
-- [] cors (cookies!!!!)
+- [x] express-rate-limiter
+- [x] helmet
+- [x] xss-clean
+- [x] express-mongo-sanitize
+- [x] cors (cookies!!!!)
 
 #### Deploy on Heroku
 
