@@ -14,6 +14,8 @@ Follow the steps below to set up and run the project:
     MONGO_URI=your_mongodb_connection_string
     JWT_KEY=your_jwt_secret
     JWT_LIFETIME=your-lifetime-jwt
+    USER = your-gmail
+    PASSWORD = your-password
     ```
 
 3. Open your terminal and run the following commands:
